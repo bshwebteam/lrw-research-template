@@ -1,9 +1,10 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 import { POST_EVENT_API, FORM_SUBMIT_API } from "./utils/constants";
 import { getQueryVariable, getQueryVariables } from "./utils/helpers";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
-
+import RadioForm from "./components/RadioForm";
 function App() {
   // used For LRW Research
   const [queryParameters, setqueryParameters] = useState("");
@@ -94,9 +95,26 @@ function App() {
   // if (queryParameters && init) {
   //   POST_EVENT_INITIALIZATION();
   // }
+  const Home = () => {
+    return <h2>Home</h2>;
+  };
 
   return (
-    <div className="App">
+    <div className='App'>
+      <Router>
+        <div>
+          {/* A <Switch> looks through its children <Route>s and
+            renders the first one that matches the current URL. */}
+          <Switch>
+            <Route path='/radio'>
+              <RadioForm />
+            </Route>
+            <Route path='/'>
+              <Home />
+            </Route>
+          </Switch>
+        </div>
+      </Router>
       <form onSubmit={() => handleSubmit()}></form>
     </div>
   );

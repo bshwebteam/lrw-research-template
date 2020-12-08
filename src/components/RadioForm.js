@@ -11,6 +11,7 @@ import {
   CardColumns,
   Form,
   Alert,
+  Radio,
 } from "react-bootstrap";
 import ReCAPTCHA from "react-google-recaptcha";
 
@@ -21,15 +22,14 @@ import {
   Link,
   useHistory,
 } from "react-router-dom";
-import Checkbox from "../Checkbox/Checkbox";
-import placeholder from "../../assets/images/download.svg";
+
 import { useFormik, Formik } from "formik";
 import * as yup from "yup";
 import * as EmailValidator from "email-validator";
 
 const RadioForm = (props) => {
   const history = useHistory();
-  const bg = require("../../assets/images/download.svg");
+
   const [emailValue, setEmailValue] = useState("");
 
   const [firstname, setFirstName] = useState("");
@@ -326,287 +326,44 @@ const RadioForm = (props) => {
               {errorMessage}
             </Alert>
           ) : null}
+          <h2>Cleaning</h2>
 
-          <Formik
-            style={{ minWidth: "100%" }}
-            validate={validate}
-            validationSchema={schema}
-            onSubmit={handleSubmit}
-            initialValues={{
-              email: "",
-              firstName: "",
-              lastName: "",
-              zip: "",
-              terms: false,
-            }}
-          >
-            {({
-              handleSubmit,
-              handleChange,
-              handleBlur,
-              values,
-              touched,
-              isValid,
-              errors,
-            }) => (
-              <Form
-                noValidate
-                onSubmit={handleSubmit}
-                style={{ minWidth: "100%" }}
-              >
-                <Form.Group controlId='Email'>
-                  <Form.Label>Email *</Form.Label>
-                  <Form.Control
-                    size='lg'
-                    type='text'
-                    name='email'
-                    value={values.email}
-                    onChange={handleChange}
-                    isInvalid={!!errors.email}
-                  />
-
-                  <Form.Control.Feedback type='invalid'>
-                    Please enter a valid email.
-                  </Form.Control.Feedback>
-                </Form.Group>
-
-                <Form.Group controlId='firstName'>
-                  <Form.Label>First Name *</Form.Label>
-                  <Form.Control
-                    size='lg'
-                    type='text'
-                    name='firstName'
-                    value={values.firstName}
-                    onChange={handleChange}
-                    isInvalid={!!errors.firstName}
-                  />
-
-                  <Form.Control.Feedback type='invalid'>
-                    Please provide your first name.
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group controlId='lastName'>
-                  <Form.Label>Last Name *</Form.Label>
-                  <Form.Control
-                    size='lg'
-                    type='text'
-                    name='lastName'
-                    value={values.lastName}
-                    onChange={handleChange}
-                    isInvalid={!!errors.lastName}
-                  />
-
-                  <Form.Control.Feedback type='invalid'>
-                    Please provide your last name.
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <Form.Group controlId='zipCode'>
-                  <Form.Label>Zip Code (5 digits) *</Form.Label>
-                  <Form.Control
-                    size='lg'
-                    type='text'
-                    name='zip'
-                    value={values.zip}
-                    onChange={handleChange}
-                    isInvalid={!!errors.zip}
-                  />
-
-                  <Form.Control.Feedback type='invalid'>
-                    Please provide a valid US zip code that is 5 digits long.
-                  </Form.Control.Feedback>
-                </Form.Group>
-                <p>
-                  Select your favorite kitchen suite(s) below to access your
-                  downloadable copy: *
-                </p>
-                {downloadLinksError ? (
-                  <p className='errorMessage'>
-                    Please select kitchen suite(s).
-                  </p>
-                ) : null}
-
-                <CardColumns>
-                  <a
-                    style={{ cursor: "pointer" }}
-                    onClick={() => selectCard(1)}
-                  >
-                    <Card
-                      bg='secondary'
-                      text='white'
-                      className={`${
-                        !boxOneSelect
-                          ? "highlightSelection text-center p-3"
-                          : "text-center p-3"
-                      }`}
-                    >
-                      <blockquote className='blockquote mb-0 card-body'>
-                        <p>Kitchen Suite 1</p>
-                      </blockquote>
-                    </Card>
-                  </a>
-                  <a
-                    style={{ cursor: "pointer" }}
-                    onClick={() => selectCard(2)}
-                  >
-                    <Card
-                      bg='secondary'
-                      text='white'
-                      className={`${
-                        !boxTwoSelect
-                          ? "highlightSelection text-center p-3"
-                          : "text-center p-3"
-                      }`}
-                    >
-                      <blockquote className='blockquote mb-0 card-body'>
-                        <p>Kitchen Suite 2</p>
-                      </blockquote>
-                    </Card>
-                  </a>
-                  <a
-                    style={{ cursor: "pointer" }}
-                    onClick={() => selectCard(3)}
-                  >
-                    <Card
-                      bg='secondary'
-                      text='white'
-                      className={`${
-                        !boxThreeSelect
-                          ? "highlightSelection text-center p-3"
-                          : "text-center p-3"
-                      }`}
-                    >
-                      <blockquote className='blockquote mb-0 card-body'>
-                        <p>Kitchen Suite 3</p>
-                      </blockquote>
-                    </Card>
-                  </a>
-                  <a
-                    style={{ cursor: "pointer" }}
-                    onClick={() => selectCard(4)}
-                  >
-                    <Card
-                      bg='secondary'
-                      text='white'
-                      className={`${
-                        !boxFourSelect
-                          ? "highlightSelection text-center p-3"
-                          : "text-center p-3"
-                      }`}
-                    >
-                      <blockquote className='blockquote mb-0 card-body'>
-                        <p>Kitchen Suite 4</p>
-                      </blockquote>
-                    </Card>
-                  </a>
-                  <a
-                    style={{ cursor: "pointer" }}
-                    onClick={() => selectCard(5)}
-                  >
-                    <Card
-                      bg='secondary'
-                      text='white'
-                      className={`${
-                        !boxFiveSelect
-                          ? "highlightSelection text-center p-3"
-                          : "text-center p-3"
-                      }`}
-                    >
-                      <blockquote className='blockquote mb-0 card-body'>
-                        <p>Kitchen Suite 5</p>
-                      </blockquote>
-                    </Card>
-                  </a>
-                  <a
-                    style={{ cursor: "pointer" }}
-                    onClick={() => selectCard(6)}
-                  >
-                    <Card
-                      bg='secondary'
-                      text='white'
-                      className={`${
-                        !boxSixSelect
-                          ? "highlightSelection text-center p-3"
-                          : "text-center p-3"
-                      }`}
-                    >
-                      <blockquote className='blockquote mb-0 card-body'>
-                        <p>Kitchen Suite 6</p>
-                      </blockquote>
-                    </Card>
-                  </a>
-                </CardColumns>
-                <br></br>
-                <div className={`${incorrectCaptcha ? "captchaError" : ""}`}>
-                  <ReCAPTCHA
-                    sitekey='6LcbROQZAAAAAItQ23coy43o0mkrIHY3NjcX39L2'
-                    onChange={onCaptchaChange}
-                  />
-                </div>
-                {incorrectCaptcha ? (
-                  <p className='errorMessage'>Please complete the captcha.</p>
-                ) : null}
-                <br />
-                <Form.Group controlId='AgreeToTerms'>
+          <Form>
+            <fieldset>
+              <Form.Group as={Row}>
+                <Form.Label as='legend' column sm={2}>
+                  Does the glass cooktop appear easier to clean without the
+                  knobs?*
+                </Form.Label>
+                <Col sm={10}>
                   <Form.Check
-                    required
-                    name='terms'
-                    onChange={handleChange}
-                    isInvalid={!!errors.terms}
-                    feedback={errors.terms}
-                    id='validationFormik0'
-                    label={
-                      <div>
-                        I have read the{" "}
-                        <a
-                          href='https://bosch-home.com/us/about/imprint/legal'
-                          target='_blank'
-                          style={{
-                            color: "rgb(" + 0 + "," + 123 + "," + 255 + ")",
-                            backgroundColor:
-                              "rgb(" + 255 + "," + 255 + "," + 255 + ")",
-                            fontWeight: "600",
-                          }}
-                        >
-                          Terms of Use
-                        </a>{" "}
-                        and{" "}
-                        <a
-                          href='https://bosch-home.com/us/about/imprint/privacypolicy'
-                          target='_blank'
-                          style={{
-                            color: "rgb(" + 0 + "," + 123 + "," + 255 + ")",
-                            backgroundColor:
-                              "rgb(" + 255 + "," + 255 + "," + 255 + ")",
-                            fontWeight: "600",
-                          }}
-                        >
-                          Privacy Policy
-                        </a>{" "}
-                        of BSH Home Appliances Corporation - Bosch, 1901 Main
-                        Street, Suite 600, Irvine, CA 92614. I understand and
-                        accept them.
-                      </div>
-                    }
-                    size='lg'
+                    type='radio'
+                    label='Yes'
+                    name='formHorizontalRadios'
+                    id='formHorizontalRadios1'
                   />
+                  <Form.Check
+                    type='radio'
+                    label='No'
+                    name='formHorizontalRadios'
+                    id='formHorizontalRadios2'
+                  />
+                  <Form.Check
+                    type='radio'
+                    label='Not Sure'
+                    name='formHorizontalRadios'
+                    id='formHorizontalRadios3'
+                  />
+                </Col>
+              </Form.Group>
+            </fieldset>
 
-                  {/* <Form.Control.Feedback type='invalid'>
-                    Please agree to Terms of Use.
-                  </Form.Control.Feedback> */}
-                </Form.Group>
-                <br></br>
-                <Button
-                  variant='primary'
-                  type='submit'
-                  className='float-left'
-                  size='lg'
-                  type='submit'
-                >
-                  <ShowLoadText></ShowLoadText>
-                </Button>
-              </Form>
-            )}
-          </Formik>
+            <Form.Group as={Row}>
+              <Col sm={{ span: 10, offset: 2 }}>
+                <Button type='submit'>Submit</Button>
+              </Col>
+            </Form.Group>
+          </Form>
         </Row>
       </Container>
     </>
