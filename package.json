@@ -19,8 +19,9 @@
     "react-google-recaptcha": "^2.1.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.1.1",
-    "yup": "^0.31.1",
-    "web-vitals": "^0.2.4"
+    "survey-react": "^1.8.20",
+    "web-vitals": "^0.2.4",
+    "yup": "^0.31.1"
   },
   "scripts": {
     "start": "react-scripts start",
