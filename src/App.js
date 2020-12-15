@@ -5,6 +5,7 @@ import { getQueryVariable, getQueryVariables } from "./utils/helpers";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 import RadioForm from "./components/RadioForm";
+import Introduction from "./pages/Introduction";
 function App() {
   // used For LRW Research
   const [queryParameters, setqueryParameters] = useState("");
@@ -110,7 +111,7 @@ function App() {
               <RadioForm />
             </Route>
             <Route path='/'>
-              <Home />
+              <Introduction />
             </Route>
           </Switch>
         </div>
